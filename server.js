@@ -11,7 +11,7 @@ const HOST = '0.0.0.0';
 const app = express();
 app.get('/', (req, res) => {
   res.send(
-    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Test Hello AWS ${os.hostname()}</h1></body>`
+    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello AWS ${os.hostname()}</h1></body>`
   );
 });
 
@@ -31,7 +31,7 @@ app.post('/', (req, res) => {
   }
 
   res.send({
-    data: `Test This is secret data from ${os.hostname()}`,
+    data: `This is secret data from ${os.hostname()}`,
     ip: ipAddress
   });
 });
