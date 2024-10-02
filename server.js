@@ -15,8 +15,6 @@ app.get('/', (req, res) => {
   );
 });
 
-const os = require('os');
-
 app.post('/', (req, res) => {
   const interfaces = os.networkInterfaces();
   let ipAddress = '';
