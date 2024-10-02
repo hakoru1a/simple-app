@@ -11,15 +11,33 @@ const HOST = '0.0.0.0';
 const app = express();
 app.get('/', (req, res) => {
   res.send(
-    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello AWS ${os.hostname()} alo alo xc</h1></body>`
+    `<body style='background-color:#283E5B'><h1 style='color: orange;text-align:center'>Hello AWS ${os.hostname()}</h1></body>`
   );
 });
 
+const os = require('os');
+
 app.post('/', (req, res) => {
+  const interfaces = os.networkInterfaces();
+  let ipAddress = '';
+
+  // Loop through network interfaces and find the IPv4 address
+  for (let interfaceName in interfaces) {
+    const iface = interfaces[interfaceName].find(
+      iface => iface.family === 'IPv4' && !iface.internal
+    );
+    if (iface) {
+      ipAddress = iface.address;
+      break;
+    }
+  }
+
   res.send({
-    data: `this is secrect data from alo ${os.hostname()}`
+    data: `This is secret data from ${os.hostname()}`,
+    ip: ipAddress
   });
 });
+
 
 
 app.listen(PORT, HOST);
